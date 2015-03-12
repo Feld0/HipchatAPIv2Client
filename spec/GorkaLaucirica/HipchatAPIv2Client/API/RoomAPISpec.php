@@ -38,13 +38,22 @@ class RoomAPISpec extends ObjectBehavior
         $this->getRoom($id)->shouldReturnAnInstanceOf('GorkaLaucirica\HipchatAPIv2Client\Model\Room');
     }
 
-    function it_gets_room_history(Client $client)
+    function it_gets_room_recent_history(Client $client)
     {
         $id = 123456;
         $response = $this->getMessageHistoryArrayResponse();
         $client->get("/v2/room/$id/history/latest", array())->shouldBeCalled()->willReturn($response);
 
         $this->getRecentHistory($id)->shouldHaveCount(2);
+    }
+
+    function it_gets_room_history(Client $client)
+    {
+        $id = 123456;
+        $response = $this->getMessageHistoryArrayResponse();
+        $client->get("/v2/room/$id/history", array())->shouldBeCalled()->willReturn($response);
+
+        $this->getHistory($id)->shouldHaveCount(2);
     }
 
     function it_creates_room(Client $client, Room $room)
