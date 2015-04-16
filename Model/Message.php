@@ -123,6 +123,26 @@ class Message
     }
 
     /**
+     * Return the message's author
+     *
+     * @return string
+     */
+    public function getFrom()
+    {
+        return $this->from;
+    }
+
+    /**
+     * Return the message's date
+     *
+     * @return string
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
      * Sets whether or not this message should trigger a notification
      *
      * @param boolean $notify Whether or not this message should trigger a notification
