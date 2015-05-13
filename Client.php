@@ -30,6 +30,7 @@ class Client
         $this->auth = $auth;
         if ($browser === null) {
             $client = new Curl();
+            $client->setTimeout(300);
             $this->browser = new Browser($client);
         }
         else {
